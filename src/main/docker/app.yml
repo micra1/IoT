@@ -1,0 +1,14 @@
+version: '2'
+services:
+    iot-app:
+        image: iot
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATASOURCE_URL=jdbc:mysql://iot-mysql:3306/iot?useUnicode=true&characterEncoding=utf8&useSSL=false
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+        ports:
+            - 8080:8080
+    iot-mysql:
+        extends:
+            file: mysql.yml
+            service: iot-mysql
